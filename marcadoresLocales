@@ -1,4 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8">
+  <title> Marcadores locales </title>
+   
 <h1>Ejemplo con marcadores locales</h1>
 <ol>
     <li><a href="#marca_rojo">Rojo</a></li>
