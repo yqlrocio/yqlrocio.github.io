@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre mí</title>
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+  <h1>Ejercicio 1: Sobre mí</h1>
+
+  <p>Estoy cursando este Ciclo porque me interesa aprender sobre el desarrollo web y la programación. Me motiva crear cosas útiles y entender cómo funcionan las páginas desde dentro.</p>
+
+  <p>Hasta ahora lo estoy llevando muy bien; cada semana aprendo algo nuevo y práctico. Espero poder aplicar todo lo aprendido en proyectos reales y mejorar mis habilidades como desarrollador.</p>
+
+  <img src="../img/personaje.png" alt="Personaje con el que me identifico" width="250">
+
+  <h2>Mis gustos (ordenados por preferencia)</h2>
+  <ol>
+    <li>Programar y crear páginas web</li>
+    <li>Escuchar música</li>
+    <li>Jugar videojuegos</li>
+    <li>Hacer deporte</li>
+    <li>Salir con amigos</li>
+  </ol>
+
+  <p><a href="../index.html">⬅ Volver a la página principal</a></p>
+
+</body>
+</html>
