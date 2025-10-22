@@ -64,10 +64,10 @@
   <div id="indice">
     <h2>Índice</h2>
     <ul>
-      <li onclick="mostrarContenido('inicio')">Inicio</li>
-      <li onclick="mostrarContenido('acerca')">Acerca de</li>
-      <li onclick="mostrarContenido('servicios')">Servicios</li>
-      <li onclick="mostrarContenido('contacto')">Contacto</li>
+      <li onclick="mostrarContenido('ejercicio01')">Ejercicio01</li>
+      <li onclick="mostrarContenido('ejercicio02')">Ejercicio02</li>
+      <li onclick="mostrarContenido('ejercicio03')">Ejercicio03</li>
+      <li onclick="mostrarContenido('ejercicio04')">Ejercicio04</li>
     </ul>
   </div>
 
@@ -82,16 +82,58 @@
       let html = "";
 
       switch (seccion) {
-        case "inicio":
+        case "ejercicio01":
           html = `
-            <h2>Inicio</h2>
-            <p>Bienvenido a nuestra página de ejemplo. Aquí encontrarás información organizada en secciones.</p>
-          `;
+          <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      padding: 40px;
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    img {
+      width: 200px;
+      display: block;
+      margin: 20px 0;
+    }
+    ol {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 1: Sobre mí</h1>
+
+  <p>Estoy en el Ciclo porque me apasiona la tecnología y quiero desarrollarme profesionalmente en el ámbito de la programación y desarrollo web.</p>
+
+  <p>Hasta ahora, estoy disfrutando mucho el contenido del curso. Aunque hay retos, estoy motivado/a a seguir aprendiendo cada día. Espero adquirir las habilidades necesarias para trabajar en el mundo digital.</p>
+
+  <img src="https://upload.wikimedia.org/wikipedia/en/9/9a/SpongeBob_SquarePants_character.svg" alt="Personaje animado con el que me identifico">
+
+  <h2>Mis gustos en orden de preferencia</h2>
+  <ol>
+    <li>Programar</li>
+    <li>Escuchar música</li>
+    <li>Hacer deporte</li>
+    <li>Pasar tiempo con mis amigos</li>
+    <li>Jugar videojuegos</li>
+  </ol>
+
+  <p><a href="../index.html">← Volver a la página principal</a></p>
+</body>
+</html>
+
+</html>          `;
           break;
 
-        case "acerca":
+        case "ejercicio02":
           html = `
-            <h2>Acerca de</h2>
+            <h2>Ejercicio02</h2>
             <p>Somos una empresa dedicada a crear soluciones web modernas, intuitivas y funcionales.</p>
           `;
           break;
