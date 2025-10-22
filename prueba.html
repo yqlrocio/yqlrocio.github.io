@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página con índice y contenido</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Panel izquierdo */
+    #indice {
+      width: 25%;
+      background-color: #1f2937;
+      color: white;
+      padding: 20px;
+    }
+
+    #indice h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #indice ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #indice li {
+      margin: 10px 0;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    #indice li:hover {
+      background-color: #374151;
+    }
+
+    /* Panel derecho */
+    #contenido {
+      flex: 1;
+      padding: 30px;
+      background-color: #f9fafb;
+      overflow-y: auto;
+    }
+
+    #contenido h2 {
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="indice">
+    <h2>Índice</h2>
+    <ul>
+      <li onclick="mostrarContenido('inicio')">Inicio</li>
+      <li onclick="mostrarContenido('acerca')">Acerca de</li>
+      <li onclick="mostrarContenido('servicios')">Servicios</li>
+      <li onclick="mostrarContenido('contacto')">Contacto</li>
+    </ul>
+  </div>
+
+  <div id="contenido">
+    <h2>Bienvenido</h2>
+    <p>Selecciona una opción del índice para ver el contenido.</p>
+  </div>
+
+  <script>
+    function mostrarContenido(seccion) {
+      const contenido = document.getElementById("contenido");
+      let html = "";
+
+      switch (seccion) {
+        case "inicio":
+          html = `
+            <h2>Inicio</h2>
+            <p>Bienvenido a nuestra página de ejemplo. Aquí encontrarás información organizada en secciones.</p>
+          `;
+          break;
+
+        case "acerca":
+          html = `
+            <h2>Acerca de</h2>
+            <p>Somos una empresa dedicada a crear soluciones web modernas, intuitivas y funcionales.</p>
+          `;
+          break;
+
+        case "servicios":
+          html = `
+            <h2>Servicios</h2>
+            <ul>
+              <li>Diseño Web</li>
+              <li>Desarrollo de Aplicaciones</li>
+              <li>Optimización SEO</li>
+            </ul>
+          `;
+          break;
+
+        case "contacto":
+          html = `
+            <h2>Contacto</h2>
+            <p>Puedes escribirnos a <a href="mailto:info@ejemplo.com">info@ejemplo.com</a></p>
+          `;
+          break;
+
+        default:
+          html = "<h2>Sección no encontrada</h2>";
+      }
+
+      contenido.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
