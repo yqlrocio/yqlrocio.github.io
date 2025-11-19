@@ -16,23 +16,58 @@
  <header>
     <h1>CodeFest 2025</h1>
     <h2> "Donde la Música y el Código se encuentran"</h2>
- </header>
+   <link rel="stylesheet" href=".\css\estilos.css">
+  </header>
 
   <body>
      <form action="https://www.w3schools.com/action_page.php"  method="post" enctype="multipart/form-data"> 
-  
+
+  <main>
     <fieldset>
        
-      <legend>Formulario de contacto</legend>
+      <legend>Datos personales:</legend>
       
       <label for="name">Nombre y appellidos:</label>
-      <input input type="text" placeholder="Nombre y Apellidos" name="nombre"><br>
+      <input type="text" placeholder="Nombre y Apellidos" name="nombre"><br>
       
       <label for="email" required >Correo:</label>
-      <input input type="email" id="email" name="correo"><br>
+      <input type="email" id="email" name="correo"><br>
     
-      <label for="mensaje">Mensaje:</label>
     </fieldset>
+
+    <fieldset>
+      
+      <legend>Tipo de entrada:</legend>
+
+      <input type="radio">
+      <select>
+      <option name="tipo_entrada">Abono General (3 Días)</option>
+      <option name="tipo_entrada">Abono VIP (3 Días)</option>
+      <option name="tipo_entrada">Entrada de Día</option>
+      </select>
+
+    </fieldset>
+
+    <fieldset>
+      
+      <legend>Extras:</legend>
+
+      <input type="checkbox">
+      <select multiple>
+      <option name="extra1">Camping</option>
+      <option value="extra2">Pack Merchandising</option>
+      <option value="extra3">Acceso a Talleres Tech</option>
+      </select>
+    
+    </fieldset>
+
+   <legend>Día (Solo si es Entrada de Día):</legend>
+
+      <select>
+      <option name="dia1">Viernes</option>
+      <option name="dia2">Sábado</option>
+      <option name="dia3">Domingo</option>
+      </select>
 
     <button type="submit">Enviar</button>
 
@@ -40,13 +75,7 @@
 
   </form>
 
-   <main>
-        <section>
-            <h3>¡No te lo pierdas!</h3>
-            <p> A diferencia de otros eventos donde el foco es solo escuchar, CODE FEST apuesta por un enfoque experiencial. Con talleres interactivos centrados en inteligencia artificial, desarrollo web, programación o QA, los asistentes pueden aprender haciendo, con dinámicas reales y acompañados por profesionales en activo.</p>    
-            <img src=".\img\codefest.jpg" alt="Logo CodeFest 2024" width="300"/>       
-        </section>
-     </main>
+  </main>
 
   </body>
 
