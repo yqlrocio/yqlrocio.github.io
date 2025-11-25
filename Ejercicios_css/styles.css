@@ -1,23 +1,23 @@
 :root {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-     }
+}
 header {
       background-color: #007bff;
         padding: 10px;
         border-radius: 15px;
-     }
+}
 nav{
     color:white
     text-decoration none
     }
 a:hover {
     color: pink;
-     }
+}
 h1 {
     color: #333333;
     text-align: center;
-     }
+}
 ul {
     list-style-type: none;          
 }
@@ -26,11 +26,11 @@ ul {
     margin: auto;
     padding: 20px;
 }
-h2 {
+#contenido h2 {
     color: rgb(235, 201, 139);
     padding: 10px;
 }
-p {
+#contenido p {
     font-size: 16px;
     color: rgb(156, 214, 156);
 }      
