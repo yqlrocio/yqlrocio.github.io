@@ -1,0 +1,102 @@
+<!DOCTYPE html> 
+<html lang="es">    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Aplicando Estilos CSS </title>
+</html>
+
+    <style>
+        p {
+            font-family: Arial, sans-serif;
+        }
+        .parrafo1 {
+            color: rgb(245, 175, 245);
+            font-size: 16px;
+            font-style: normal;
+            text-decoration: underline;
+            text-transform: uppercase;
+            text-align: left;
+        }
+        .parrafo2 {
+            color: rgb(164, 227, 243);
+            font-size: 18px;
+            font-style: italic;
+            text-decoration: line-through;
+            text-transform: lowercase;
+            text-align: center;
+        }
+        .parrafo3 {
+            color: rgb(211, 153, 238);
+            font-size: 20px;
+            font-style: oblique;
+            text-decoration: none;
+            text-transform: capitalize;
+            text-align: right;
+        }
+        #BUSCADORES {
+            display: inline-block;
+            width: 400px;
+            height: 200px;
+            background-color: #FFB2DA ;
+            border-radius: 15px;
+            margin-right: 10px;
+        }
+        #REDES_SOCIALES {
+            display: inline-block;
+            width: 400px;
+            height: 250px;
+            background-color: #BEA9FF ;
+            border-radius: 15px;
+            margin-right: 10px;
+        }   
+        #NOTICIAS {
+            display: inline-block;
+            width: 400px;
+            height: 200px;
+            background-color: #A8DEF3 ;
+            border-radius: 15px;
+        }
+
+        #noticias {
+            text-decoration: none; 
+        }
+        
+        #noticias:hover {
+           font-weight: bold;
+           color: pink;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>CSS: EJERCICIO 1</h1>
+    <p class="parrafo1">Este es el primer párrafo con estilos aplicados.</p>
+    <p class="parrafo2">Este es el segundo párrafo con estilos aplicados.</p>
+    <p class="parrafo3">Este es el tercer párrafo con estilos aplicados.</p>
+    Actividad 2:
+
+    <h1>CSS: EJERCICIO 2</h1>
+    <div id="BUSCADORES">
+       <h2>BUSCADORES:</h2>
+        <a href="#" style="display: inline-block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #C2B2B4 ; text-align: center; line-height: 50px; margin-right: 5px;">Google</a>
+        <a href="#" style="display: inline-block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #642d6e ; text-align: center; line-height: 50px; margin-right: 5px;">Ecosia</a>
+        <a href="#" style="display: inline-block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #3A4454 ; text-align: center; line-height: 50px;">DuckDuckGo</a>
+    </div>
+
+    <div id="REDES_SOCIALES">
+          <h2>REDES SOCIALES:</h2>
+        <a href="#" style="display: block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #6461A0; text-align: center; line-height: 50px; margin-bottom: 5px;">Instagram</a>
+        <a href="#" style="display: block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #314CB6; text-align: center; line-height: 50px; margin-bottom: 5px;">TikTok</a>
+        <a href="#" style="display: block; width: 100px; border-radius: 15px; height: 50px; color: white; background-color: #0A81D1; text-align: center; line-height: 50px;">Pinterest</a>
+    </div>
+
+    <div id="NOTICIAS"> 
+         <h2>NOTICIAS:</h2>
+        <a href="#" id="noticias"></a>El País</a><br>
+        <a href="#" id="noticias"></a>El Diario</a><br>
+        <a href="#" id="noticias"></a>El mundo</a>
+    </div>              
+</body>
+</html> 
