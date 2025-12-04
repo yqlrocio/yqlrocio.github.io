@@ -1,0 +1,143 @@
+Ejercicio Avanzado: Maquetación de una Receta Responsiva
+🎯 Objetivo
+El objetivo de este ejercicio es evolucionar una página HTML simple de una receta a un diseño de "tarjeta" (card) profesional y moderno. Deberás reestructurar el HTML usando <div>s y aplicar CSS usando un enfoque Mobile-First, Flexbox y Media Queries.
+📂 Material de Partida
+Comienza con este código HTML básico. No lo modifiques todavía.
+HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receta de Tortilla</title>
+  <link rel="stylesheet" href="estilo-receta.css">
+</head>
+<body>
+
+
+  <h1>Receta de la tortilla francesa</h1>
+
+
+  <h2>Ingredientes:</h2>
+  <ul>
+    <li>Huevos</li>
+    <li>Aceite</li>
+    <li>Sal</li>
+  </ul>
+
+
+  <h2>Preparación:</h2>
+  <ol>
+    <li>Calentar el aceite en una sartén</li>
+    <li>Cascar el huevo y batirlo</li>
+    <li>Verter el huevo batido en la sartén</li>
+    <li>Esperar un par de minutos, voltear y volver a esperar.</li>
+  </ol>
+
+
+  <p>Servir con mayonesa, tomate o jamón.</p>
+
+
+</body>
+</html>
+
+
+
+📝 Fases del Ejercicio
+Sigue estas fases en orden. No pases a la siguiente hasta haber completado la anterior.
+Fase 1: Reestructurar el HTML
+Tu primer paso no es escribir CSS, sino organizar el HTML. El HTML actual es semántico, pero no es ideal para la maquetación. Necesitas "envolver" las secciones en contenedores <div> para poder controlarlas.
+Tu Tarea: Modifica el <body> del HTML para crear una estructura lógica.
+Pista 1: Necesitarás un contenedor principal que envuelva toda la receta (esta será tu "tarjeta").
+Pista 2: Para usar Flexbox más tarde y poner "Ingredientes" y "Preparación" uno al lado del otro, ¿no deberías agruparlos dentro de un <div> padre común?
+Pista 3: Piensa en dar nombres de class (clases) a tus nuevos <div>s para poder seleccionarlos fácilmente en CSS (ej. clase="tarjeta", clase="columnas", clase="col-izquierda", etc. ¡Elige los nombres que te parezcan más claros!).
+
+Fase 2: Estilos "Mobile-First" (El Look de la Tarjeta)
+Ahora, en tu archivo estilo-receta.css, vas a definir los estilos base. Siguiendo el enfoque Mobile-First, estos estilos deben verse bien en una pantalla de teléfono (es decir, todo apilado verticalmente).
+Tu Tarea: Escribe el CSS para que, en una pantalla pequeña, se vea como una tarjeta unificada.
+Dale un background-color al <body> (ej. un gris claro) para que la tarjeta contraste.
+Haz que tu "contenedor principal" (la tarjeta) tenga:
+Un background-color blanco (#ffffff).
+Un width máximo (ej. max-width: 800px) y esté centrado en la página (▶️ Pista: margin: 0 auto;).
+Bordes redondeados (border-radius) y una sombra suave (box-shadow).
+Estiliza el <h1> para que parezca el encabezado de la tarjeta (ej. con un color de fondo y texto blanco).
+En este punto, "Ingredientes" y "Preparación" ya deberían estar uno encima del otro por defecto. ¡Perfecto para móviles!
+
+Fase 3: La Magia de Flexbox y Media Queries (El Diseño Responsivo)
+¡Aquí viene el reto! Queremos que el diseño cambie en pantallas más grandes (tablets y escritorio).
+Tu Tarea: Añade una Media Query al final de tu CSS para que, cuando la pantalla sea lo suficientemente ancha, el diseño cambie a dos columnas.
+La Media Query: ¿Cómo escribes la regla @media para que se aplique solo a pantallas que tengan un ancho mínimo (ej. min-width) de 700px?
+Activar Flexbox: Dentro de esa media query, debes seleccionar el <div> padre que contiene "Ingredientes" y "Preparación". ¿Qué propiedad display le darás para activar Flexbox?
+Definir las Columnas: Por defecto, Flexbox las pondrá una al lado de la otra. Ahora, haz que la columna "Preparación" sea más ancha que "Ingredientes".
+▶️ Pista: Investiga la propiedad flex. Si le das flex: 1; a Ingredientes y flex: 2; a Preparación, ¿qué ocurre?
+▶️ Pista: ¿Quedan las columnas muy pegadas? Investiga la propiedad gap para el contenedor Flexbox.
+
+🌟 Reto Adicional (Bonus)
+Si has terminado lo anterior, intenta esto:
+¿Puedes hacer que el <h1> tenga bordes redondeados solo en las esquinas superiores, pero no en las inferiores? (▶️ Pista: border-top-left-radius y border-top-right-radius).
+¿Puedes hacer que la columna de ingredientes tenga un color de fondo gris muy claro (#f9f9f9) y un padding interno, pero solo en la vista de escritorio (dentro de la media query)?
+
+<!html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receta de Tortilla</title>
+    
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color:  #f3d9f1;
+      }
+      .contenedor {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        background-color:  #ffffff;
+        width: 800px;
+        margin: center;
+        border-radius: 0 auto;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .ingredientes,
+      .preparación {
+        box-sizing: border-box;
+        width: 45%;
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid #333;
+        background-color: #bce9f5;
+          display: flex;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="contenedor              
+">
+      <div class="ingredientes">
+        <h1>Receta de la tortilla francesa</h1>
+        <h2>Ingredientes:</h2>
+          <ul>
+            <li>1 huevo</li>
+            <li>aceite de oliva</li>
+            <li>sal al gusto</li>
+          </ul>
+      </div>
+
+      <div class="preparación">
+      <h2>Preparación:</h2>   
+        <ol>
+          <li>Calentar el aceite en una sartén</li>
+          <li>Cascar el huevo y batirlo</li>
+          <li>Verter el huevo batido en la sartén</li>
+          <li>Esperar un par de minutos, voltear y volver a esperar.</li>
+        </ol>
+    <p>Servir con mayonesa, tomate o jamón.</p>
+  </body>
+</html>                                     
+
+
+
