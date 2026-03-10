@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">   
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio DOM</title> 
+    <button class = "button">Botón</button>
+</head>
+
+<body>
+    
+    <script >
+        const titulo = document.getElementById("titulo");
+        let cabecera=""; 
+        for (let i = 1; i < 6; i++) {
+           cabecera = cabecera +'<h' + i+'>CABECERA H' +i+'</h'+ i+'>';
+        }
+
+        titulo.innerHTML = cabecera;    
+
+        const boton = document.createElement("button");
+        boton.style.backgroundColor = "lightblue";
+        boton.style.color = "white";
+
+        document.querySelector("button").addEventListener("Click", function() {
+            alert("¡Botón presionado!");
+        });
+
+        //Crear boton verde
+        let botonVerde = document.createElement("button");
+        botonVerde.style.backgroundColor = "verde";
+        botonVerde.textContent="Verde"
+        botonVerde.style.backgroundColor="green";
+        botonVerde.style.color="white";
+        document.body.appendChild(botonVerde);
+
+        //Crear boton rojo
+         let botonRojo = document.createElement("button");
+         botonRojo.style.backgroundColor = "rojo";
+         botonRojo.textContent="Rojo"
+         botonRojo.style.backgroundColor="red";
+         botonRojo.style.color="white";
+         document.body.appendChild(botonRojo);
+
+        //Crear boton azul      
+        let botonAzul = document.createElement("button");
+        botonAzul.style.backgroundColor = "azul";
+        botonAzul.textContent="Azul"
+        botonAzul.style.backgroundColor="blue";
+        botonAzul.style.color="white";      
+        document.body.appendChild(botonAzul);   
+        
+</script>
+</body>
+</html>

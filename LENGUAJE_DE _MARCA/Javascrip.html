@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio DOM</title>
+    </head>
+
+    <body>
+    <h1 id="titulo1">Ejercicio 1: </h1>
+
+    <h2 id="titulo2"> Apartdo A: </h2>
+        <script>
+            let nombre = "Rocio";
+            const edad = 19;
+            let mensaje = `Hola, mi nombre es ${nombre} y tengo ${edad} años.`;
+            document.write(mensaje);
+        </script>
+
+    <h2 id="titulo3">Apartado B: </h2>
+        <script>
+            const num1 = 10;
+            const num2 = 5;
+
+            let suma = num1 + num2;
+            let diferencia = num1 - num2;       
+            let producto = num1 * num2;
+            let cociente = num1 / num2;
+
+            let mensaje1 = `La suma es: ${suma}`;
+            let mensaje2 = 'La diferencia es: ' + diferencia;
+            let mensaje3 = `El producto es: ${producto}`;
+            let mensaje4 = 'El cociente es: ' + cociente;
+
+            let p1 = document.createElement("p");
+            p1.textContent = mensaje1;
+            document.body.appendChild(p1);
+
+            let p2 = document.createElement("p");
+            p2.textContent = mensaje2;
+            document.body.appendChild(p2);
+
+            let p3 = document.createElement("p");
+            p3.textContent = mensaje3;
+            document.body.appendChild(p3);
+
+            let p4 = document.createElement("p");
+            p4.textContent = mensaje4;
+            document.body.appendChild(p4);
+        </script>
+
+    <h1 id="titulo4">Ejercicio 2: </h1>
+
+    <h2 id="titulo5">Apartado A: </h2>
+        <script>
+            const numAsignado = 7;
+            if (numAsignado % 2 === 0) {
+                document.write("El número es par");
+            } else if (numAsignado % 2 !== 0) {
+                document.write("El número es impar");
+            } 
+        </script>
+
+    <h2 id="titulo6">Apartado B: </h2>
+        <script>
+            const edad = 20;
+            if (edad >= 18) {
+                document.write ("Eres mayor de edad y puedes votar");
+            } else {
+                document.write ("No eres mayor de edad y no puedes votar");
+            }
+        </script>
+    </body>
+</html>
