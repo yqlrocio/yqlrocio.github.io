@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+</head>
+
+<body>
+     !--Ejercicio 5: Vamos a jugar a Adivinar el número donde el usuario deberá acertar el número pensado por la computadora.
+    Crea una página web HTML donde, la computadora, deberá pensar un número aleatorio de 1 a 100.
+    El usuario comenzará con 0 puntos conseguidos y una cartera de 10 puntos para conseguir. 
+    Por cada fallo, se restará 1 punto de la cartera.
+    Si acierta el número, se añadirán los puntos de la cartera al total.
+    Si la cartera llega a 0, pierde. Se mostrará un botón reiniciar.
+    Debe mostrarse la información en pantalla, no en consola.
+    (opcional) Lleva el control del número de partidas para sacar una estadística de aciertos. --> 
+<script>
+
+    let numeroPensado = parseInt(Math.random() * 100) + 1;
+    numeroUsuario = parseInt(prompt("Adivina el número entre 1 y 100:"));    
+    let cartera = 10; 
+    let puntosGanados = 0;
+    let numeroPartidas = 0;
+    let boton = document.createElement("button");
+    boton.textContent = "Reiniciar Juego";
+
+
+function reiniciarJuego() {
+    cartera = 10; 
+    puntosGanados = 0;
+    numeroPensado = parseInt(Math.random() * 100) + 1; 
+    alert("Juego reiniciado. Tienes " + cartera + " puntos.");
+}
+funcion crearBotonReiniciar() {
+    boton.addEventListener("click", reiniciarJuego);
+    document.body.appendChild(boton);
+}
+funcion mostrarMensajeGanado(mensaje) {
+     if (numeroUsuario === numeroPensado) {
+        cartera = cartera + puntosGanados;
+        numeroPartidas++;
+    document.body.appendChild(boton);
+    document.getElementById("¡Felicidades! Has adivinado el número." + " Tienes " + cartera + " puntos. Total de partidas: " + numeroPartidas);
+}
+while (numeroUsuario < 101) {
+
+   
+        alert("Has ganado " + puntosGanados + " puntos. Total de partidas: " + numeroPartidas);
+    } else if (numeroUsuario < numeroPensado) {
+        alert("El número pensado es mayor. Inténtalo de nuevo.");
+        puntosGanados = -1; 
+        numeroPartidas++;   
+        cartera = cartera + puntosGanados;
+        alert("Tienes " + cartera + " puntos.");
+    } else if (numeroUsuario > numeroPensado) {
+        alert("El número pensado es menor. Inténtalo de nuevo." + " Has perdido " + cartera-- + " puntos.");
+        puntosGanados = -1; 
+        numeroPartidas++;
+        cartera = cartera + puntosGanados;        
+        alert("Tienes " + cartera + " puntos.");
+    } 
+
+    if (cartera <= 0) {
+        alert("¡Has perdido! Tu cartera se ha vaciado.");
+        if (confirm("¿Quieres reiniciar el juego?")) {
+            cartera = 10; 
+            puntosGanados = 0;
+            numeroPensado = parseInt(Math.random() * 100) + 1; 
+            alert("Juego reiniciado. Tienes " + cartera + " puntos.");
+        } else {
+            alert("Gracias por jugar. ¡Hasta la próxima!");
+            break; 
+        }
+    }
+numeroUsuario = parseInt(prompt("Adivina el número entre 1 y 100:"));    
+}
+</script>
+
+
+</body>
+</html>
