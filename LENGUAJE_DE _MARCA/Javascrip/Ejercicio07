@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicios 5 - Ejercicio 01</title>
+    </head>
+    <body>
+        <input type="text" id="something" placeholder="Escriba algo aquí">
+
+        <button type="button" id="add">Añadir</button>
+
+        <ul id="list">
+        </ul>
+        <script>
+            document.getElementById("add").addEventListener("click", function(){
+                let unorderedList = document.getElementById("list");
+                let textIntroduced = document.getElementById("something").value;
+
+                let newItem = document.createElement("li");
+                newItem.textContent = textIntroduced + " ";
+
+                unorderedList.append(newItem);
+
+                let newButton = document.createElement("button");
+                newButton.textContent = "X";
+                newItem.append(newButton);
+
+                let goUp = document.createElement("button");
+                goUp.textContent = "↑";
+                newItem.append(goUp);
+
+                let goDown = document.createElement("button");
+                goDown.textContent = "↓";
+                newItem.append(goDown);
+
+                newButton.addEventListener("click", function(){
+                    newItem.remove();
+                });
+
+                goUp.addEventListener("click", function(){
+                    const anterior = newItem.previousElementSibling;
+                    if (anterior){
+                        anterior.before(newItem);
+                    }
+                });
+
+                goDown.addEventListener("click", function(){
+                    const siguiente = newItem.nextElementSibling;
+                    if (siguiente){
+                        siguiente.after(newItem);
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
