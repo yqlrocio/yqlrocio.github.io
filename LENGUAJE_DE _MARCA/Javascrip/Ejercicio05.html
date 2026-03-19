@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicios 5 - Ejercicio 01</title>
+    </head>
+    <body>
+        <p id="message"></p>
+// 1    
+        <script>
+            let randomNumber = Math.floor(Math.random()*11);
+            let result = document.getElementById("message");
+            let guess;
+
+            function guessNumber(){
+                do{
+                    guess = Number(prompt("Introduzca un número: "));
+
+                    if (guess === randomNumber){
+                        result.textContent = `LO HAS ADIVINADO`;
+                    } else {
+                        alert(`Inténtalo otra vez`);
+                    }
+                } while (guess !== randomNumber);
+
+                return result.textContent;
+            }
+
+            guessNumber(randomNumber);
+        </script>
+    </body>
+</html>

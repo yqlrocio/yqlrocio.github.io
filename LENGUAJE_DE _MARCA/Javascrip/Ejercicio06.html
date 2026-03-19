@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicios 6 - Ejercicio 01</title>
+    </head>
+    <body>
+// 1        
+        <form id="form">
+            <input type="text" id="name" placeholder="Escribe tu nombre">
+            <input type="text" id="surname" placeholder="Escribe tu apellido">
+            <input type="number" id="born" placeholder="Escribe tu fecha de nacimiento">
+
+            <button type="button" id="send">Enviar</button>
+        </form>
+
+        <p id="bornYear"></p>
+        <p id="averageAge"></p>
+        <script>
+            let data = document.getElementById("bornYear");
+            const form = document.getElementById("form");
+            let average = document.getElementById("averageAge");
+            let allYears = [];
+            let averageAge;
+
+            document.getElementById("send").addEventListener("click", function(){
+                let year = Number(document.getElementById("born").value);
+                let currentYear = new Date().getFullYear();
+                let age = currentYear - year;
+                let sum = 0;
+
+                if (year <= 1906){
+                    alert(`La fecha o edad introducida no es posible`);
+                    return;
+                }
+                
+                allYears.push(year);
+                
+                allYears.forEach((year) => {
+                    sum += year;
+                })
+
+                averageAge = sum/allYears.length;
+
+                if (age > 18 && age < 65){
+                    data.style.color = "green";
+                } else {
+                    data.style.color = "red";
+                }
+
+                data.textContent = `Tienes ${age} años`;
+                average.textContent = `La media de edad es de ${averageAge}`;
+            });
+
+            form.addEventListener("focusin", function(){
+                data.textContent = ``;
+            });
+        </script>
+    </body>
+</html>
