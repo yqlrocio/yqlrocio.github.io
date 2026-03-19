@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Exercises</title>
+</head>
+<body>
+
+<form>
+    <h3>Saludar:</h3>
+    <input type="text" id="nombre" placeholder="Ingrese su nombre">
+    <button type="button" id="boton">Saludar</button>
+</form>
+
+<form>
+    <h3>Calcular el promedio:</h3>
+    <input type="number" id="num1" placeholder="Ingresa un números">
+    <input type="number" id="num2" placeholder="Ingresa un números">
+    <button type="button" id="boton2">Calcular media</button>
+</form>
+
+<form>
+    <h3>Comprobar el valor:</h3>
+    <input type="number" id="numero3" placeholder="Introduce un número">
+    <button type="button" id="boton3">Comprobar</button>
+</form>
+
+<form> 
+    <h3>Comprobar si el año es bisiesto</h3>
+    <input type="number" id="año" placeholder="Introduce el año">
+    <button type="button" id="boton4">Comprobar Año Bisiesto</button>
+</form>
+    
+
+<p id="mensaje"></p>
+
+<script>
+
+// 1
+   document.getElementById("boton").addEventListener("click", saludar)
+    
+    function saludar() {
+        let nombre = document.getElementById("nombre"); 
+        let mensaje = document.getElementById("mensaje");
+        mensaje.textContent = "Hola, " + nombre.value;
+    }
+
+// 2
+    document.getElementById("boton2").addEventListener("click", media)
+
+    function media() {
+        let num1 = Number(document.getElementById("num1").value);
+        let num2 = Number(document.getElementById("num2").value);
+
+        let media = (num1 + num2)/2;
+        let mensaje = document.getElementById("mensaje");
+        mensaje.textContent = "El promedio de los valores introducidos es: " + media;
+    }
+
+// 3
+   document.getElementById("boton3").addEventListener("click", comprobar)
+
+   function comprobar() {
+        let numero = document.getElementById("numero3"); 
+        let mensaje = document.getElementById("mensaje");
+        if(numero3.value > 0) {
+            mensaje.textContent = "El número introducido es positivo";
+        } else if (numero3.value < 0) {
+            mensaje.textContent = "El número introducido es negativo";
+        } else if (numero3.value == 0) {
+            mensaje.textContent = "El número introducido es cero";
+        }
+   }
+
+// 4
+   document.getElementById("boton4").addEventListener("click", combrobarAñoBisiesto);
+
+    function combrobarAñoBisiesto() {
+    let año = Number(document.getElementById("año").value);
+    let mensaje = document.getElementById("mensaje");
+
+    if ((año % 4 === 0 && año % 100 !== 0) || año % 400 === 0) {
+        mensaje.textContent = "El año introducido es bisiesto";
+        } else {
+            mensaje.textContent = "El año introducido no es bisiesto";
+        }
+    }
+
+   
+</script>
+
+</body>
+</html>

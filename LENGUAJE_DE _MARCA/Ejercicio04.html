@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Exercises</title>
+</head>
+<body>
+
+<form>
+<input type="text" id="numero">
+</form>
+<button type="button" id="añadir">Añadir Numero </button>
+<button type="button" id="eliminar">Eliminar primer numero</button>
+<button type="button" id="imprimir">Imprimir array</button>
+
+<p id="mensajes"></p>
+    <script>
+        document.getElementById("añadir").addEventListener("click", añadirNumero);
+        document.getElementById("eliminar").addEventListener("click", eliminarNumero);
+        document.getElementById("imprimir").addEventListener("click", imprimirArray);
+
+        let lista= [1,2,3,4,5];
+
+        function añadirNumero () {
+           let numero= document.getElementById("numero").value;
+            lista.push(numero)
+        }
+
+        function eliminarNumero() {
+            let numero= document.getElementById("numero").value;
+            lista.shift(numero);
+        }
+
+        function imprimirArray() {
+            let mensaje= document.getElementById("mensajes");
+            for(let i=0; i<lista.length;i++) {
+                mensaje.textContent+= lista[i] + " ";
+            }
+        }
+
+
+    </script>
+
+</body>
+</html>
