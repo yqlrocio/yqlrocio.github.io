@@ -22,20 +22,10 @@
    // 3. Una vez que se le asigne la palabra, se recorrerá el array y se mostrará por pantalla tantas "_" tenga por cada letra
 
    <script>
-            document.getElementById("boton2").addEventListener("click", palabraAleatoria)
+            document.getElementById("boton").addEventListener("click", palabraAleatoria)
+            let lista=[programacion, javascript, desarrollo]; 
             let randomNumber = Math.floor(Math.random()*4);
-
-            // 1. Creamos una función para asignarle una palabra al valor dada por el random del 1-3; ya que solo son tres palabras. 
-            // 2. Mostrar al usuario mediante "_" cuantas letras tiene la palabra que le hemos asignado a ese valor.
-            function palabraAleatoria() {  
-                let mensaje = document.getElementById("mensaje");
-
-                if(randomNumber == 1) {
-                    let palabra1 = "javascript";
-                    let mensaje = document.getElementById("mensaje");
-                    mensaje.textContent = "La palabra es: " + palabra1;
-                }
-            }
+            
 
    </script>
 
