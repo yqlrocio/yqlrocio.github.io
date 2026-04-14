@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title> Creación simple </title>
+</head>
+<body>
+
+<h2>Datos personales</h2>
+
+<form id="formulario">
+    Nombre: <input type="text" id="nombre"><br><br>
+    Apellidos: <input type="text" id="apellidos"><br><br>
+    Edad: <input type="number" id="edad"><br><br>
+    Ciudad: <input type="text" id="ciudad"><br><br>
+
+    <button type="button" onclick="iniciar()">Enviar</button>
+</form>
+
+<h3>Resultado en JSON</h3>
+<p id="json"></p>
+
+<h3>Resultado en tabla</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+    </thead>
+    <tbody id="tablaDatos"></tbody>
+</table>
+
+<script>
+
+function iniciar() {
+    const persona = crearObjeto();
+
+    const json = serializar(persona);
+    mostrarJSON(json);
+
+    const objetoRecuperado = deserializar(json);
+    mostrarTabla(objetoRecuperado);
+}
+
+// Crear objeto desde formulario
+function crearObjeto() {
+    return {
+        nombre: document.getElementById("nombre").value,
+        apellidos: document.getElementById("apellidos").value,
+        edad: parseInt(document.getElementById("edad").value),
+        ciudad: document.getElementById("ciudad").value
+    };
+}
+
+// Serializar
+function serializar(obj) {
+    return JSON.stringify(obj);
+}
+
+// Deserializar
+function deserializar(json) {
+    return JSON.parse(json);
+}
+
+// Mostrar JSON
+function mostrarJSON(json) {
+    console.log("JSON:", json);
+    document.getElementById("json").textContent = json;
+}
+
+// Mostrar en tabla
+function mostrarTabla(obj) {
+    console.log("Objeto:", obj);
+
+    document.getElementById("tablaDatos").innerHTML = `
+        <tr>
+            <td>${obj.nombre}</td>
+            <td>${obj.apellidos}</td>
+            <td>${obj.edad}</td>
+            <td>${obj.ciudad}</td>
+        </tr>
+    `;
+}
+
+// Crear botón para reiniciar el proceso
+const reiniciarBtn = document.createElement("button");  
+
+</script>
+
+</body>
+</html>
