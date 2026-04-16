@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla con jQuery comentada</title>
+
+    <!-- Importamos jQuery desde CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2>Consulta de usuarios</h2>
+
+<!-- FORMULARIO PARA INTRODUCIR DATOS -->
+<form id="formulario">
+    Nombre: <input type="text" id="nombre"><br><br>
+    Apellidos: <input type="text" id="apellidos"><br><br>
+    Edad: <input type="number" id="edad"><br><br>
+    Ciudad: <input type="text" id="ciudad"><br><br>
+
+    <!-- Botón que ejecuta todo el proceso -->
+    <button type="button" id="Enviar">Enviar</button>
+</form>
+
+<h3>Resultado en JSON</h3>
+<p id="json"></p>
+
+<h3>Resultado en tabla</h3>
+
+<!-- TABLA DONDE SE INSERTAN LOS DATOS -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+    </thead>
+
+    <!-- AQUÍ SE INSERTAN LAS FILAS DINÁMICAMENTE -->
+    <tbody id="tablaDatos"></tbody>
+</table>
+
+<h3>Estadísticas edades</h3>
+<p id="dato"></p>
+
+<script>
+
+$(document).ready(function () {
+
+    // Contador para generar IDs únicos en cada fila
+    let contador = 0;
+
+    // Cuando se hace clic en el botón, se ejecuta el programa
+    $("#Enviar").click(function () {
+        iniciar();
+    });
+
+    // FUNCIÓN PRINCIPAL QUE SE EJECUTA AL HACER CLIC EN EL BOTÓN
+    function iniciar() {
+
+        // 1. Creamos el objeto con los datos del formulario
+        const persona = crearObjeto();
+
+        // 2. Validamos que no haya campos vacíos
+        if (!persona.nombre || !persona.apellidos || !persona.edad || !persona.ciudad) {
+            alert("ERROR: Debes rellenar todos los campos");
+            return; // detenemos la ejecución si hay error
+        }
+
+        // 3. Convertimos el objeto a JSON
+        const json = serializar(persona);
+
+        // 4. Mostramos el JSON en pantalla
+        mostrarJSON(json);
+
+        // 5. Convertimos el JSON de nuevo a objeto (simulación)
+        const objetoRecuperado = deserializar(json);
+
+        // 6. Insertamos los datos en la tabla
+        insertarFila(objetoRecuperado);
+
+        // 7. Actualizamos las estadísticas de edades
+        actualizarEstadisticas();
+
+    }
+
+    // CREA UN OBJETO CON LOS VALORES DEL FORMULARIO
+    function crearObjeto() {
+        return {
+            nombre: $("#nombre").val(),
+            apellidos: $("#apellidos").val(),
+            edad: parseInt($("#edad").val()), // convertimos a número
+            ciudad: $("#ciudad").val()
+        };
+    }
+
+    // CONVIERTE OBJETO A JSON (texto)
+    function serializar(obj) {
+        return JSON.stringify(obj);
+    }
+
+    // CONVIERTE JSON A OBJETO
+    function deserializar(json) {
+        return JSON.parse(json);
+    }
+
+    // MUESTRA EL JSON EN PANTALLA
+    function mostrarJSON(json) {
+        $("#json").text(json);
+    }
+
+    // INSERTA UNA FILA EN LA TABLA
+    function insertarFila(obj) {
+
+        // aumentamos contador para generar ID único
+        contador++;
+
+        // creamos la fila con datos del usuario
+        $("#tablaDatos").append(`
+            <tr id="fila-${contador}">
+                <td>${obj.nombre}</td>
+                <td>${obj.apellidos}</td>
+                <td>${obj.edad}</td>
+                <td>${obj.ciudad}</td>
+            </tr>
+        `);
+
+        // cuando se hace clic en la fila, se elimina
+        $(`#fila-${contador}`).click(function () {
+            $(this).remove(); // elimina la fila de la tabla
+            actualizarEstadisticas(); // recalcula los datos después de eliminar la fila
+        });
+    }
+
+    // CALCULA ESTADÍSTICAS DE LAS EDADES
+    function actualizarEstadisticas() {
+
+        let edades = [];
+
+        // recorremos todas las filas de la tabla
+        $("#tablaDatos tr").each(function () {
+
+            // cogemos la tercera columna (edad)
+            let edad = parseInt($(this).find("td:nth-child(3)").text());
+
+            // comprobamos que sea un número válido
+            if (!isNaN(edad)) {
+                edades.push(edad);
+            }
+        });
+
+        // si no hay datos, mostramos mensaje
+        if (edades.length === 0) {
+            $("#dato").text("No hay datos");
+            console.log("Sin datos");
+            return;
+        }
+
+        // Añadir los datos del formulario al objeto en cada intersección
+        listado.push(crearObjeto);
+
+        // OPERACIONES
+        let suma = edades.reduce((a, b) => a + b, 0);
+        let media = suma / edades.length;
+        let max = Math.max(...edades);
+        let min = Math.min(...edades);
+
+        // mostramos resultado en pantalla
+        let resultado = `
+            Suma: ${suma} |
+            Media: ${media.toFixed(2)} |
+            Máximo: ${max} |
+            Mínimo: ${min}
+        `;
+
+        $("#dato").text(resultado);
+
+        // también lo mostramos en consola
+        console.log(resultado);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
