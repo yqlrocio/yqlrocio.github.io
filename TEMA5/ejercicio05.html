@@ -49,10 +49,10 @@
 
 $(document).ready(function () {
 
-    // Contador para generar IDs únicos en cada fila
+    // Contador para generar un ID único para cada fila
     let contador = 0;
 
-    // Cuando se hace clic en el botón, se ejecuta el programa
+    // Cuando se hace clic en el botón de enviar, se ejecuta el programa
     $("#Enviar").click(function () {
         iniciar();
     });
@@ -60,7 +60,7 @@ $(document).ready(function () {
     // FUNCIÓN PRINCIPAL QUE SE EJECUTA AL HACER CLIC EN EL BOTÓN
     function iniciar() {
 
-        // 1. Creamos el objeto con los datos del formulario
+        // 1. Creamos una variable para ir almacenando los datos del objeto
         const persona = crearObjeto();
 
         // 2. Validamos que no haya campos vacíos
@@ -154,14 +154,14 @@ $(document).ready(function () {
         // si no hay datos, mostramos mensaje
         if (edades.length === 0) {
             $("#dato").text("No hay datos");
-            console.log("Sin datos");
+            console.log("Debes de relllenar todas las casillas");
             return;
         }
 
-        // Añadir los datos del formulario al objeto en cada intersección
-        listado.push(crearObjeto);
+        // Añadir los datos del formulario al objeto creado
+        listado.push(crearObjeto());
 
-        // OPERACIONES
+        // Calculamos la suma, media y la edad máxima y mínima introducida
         let suma = edades.reduce((a, b) => a + b, 0);
         let media = suma / edades.length;
         let max = Math.max(...edades);
@@ -181,7 +181,14 @@ $(document).ready(function () {
         console.log(resultado);
     }
 
+        // Actualizar la tabla cada vez que se modifica la tabla calcular las estadísticas de edades
+        $("#tablaDatos").on("click", "tr", function () {
+            actualizarEstadisticas();
+        }); 
+
 });
+
+
 
 </script>
 
