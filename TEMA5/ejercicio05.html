@@ -47,6 +47,8 @@
 
 <script>
 
+let lista = []; 
+
 $(document).ready(function () {
 
     // Contador para generar un ID único para cada fila
@@ -132,63 +134,49 @@ $(document).ready(function () {
             $(this).remove(); // elimina la fila de la tabla
             actualizarEstadisticas(); // recalcula los datos después de eliminar la fila
         });
+
+        // eliminar la fila si hacemos clic sobre ella 
+            $(`#fila-${contador}`).click(function () {
+                $(this).remove(); // elimina la fila de la tabla
+                actualizarEstadisticas(); // recalcula los datos después de eliminar la fila
+            });
     }
-
-    // CALCULA ESTADÍSTICAS DE LAS EDADES
+    
+    // CALCULAR LA SUMA, MEDIA, MÁXIMO Y MÍNIMO DE LAS EDADES
     function actualizarEstadisticas() {
-
         let edades = [];
 
-        // recorremos todas las filas de la tabla
+        // Recorremos cada fila de la tabla para obtener las edades
         $("#tablaDatos tr").each(function () {
-
-            // cogemos la tercera columna (edad)
-            let edad = parseInt($(this).find("td:nth-child(3)").text());
-
-            // comprobamos que sea un número válido
+            const edad = parseInt($(this).find("td:nth-child(3)").text());
             if (!isNaN(edad)) {
                 edades.push(edad);
             }
         });
 
-        // si no hay datos, mostramos mensaje
-        if (edades.length === 0) {
-            $("#dato").text("No hay datos");
-            console.log("Debes de relllenar todas las casillas");
-            return;
+        if (edades.length > 0) {
+            const suma = edades.reduce((a, b) => a + b, 0);
+            const media = suma / edades.length; 
+            const maximo = Math.max(...edades);
+            const minimo = Math.min(...edades);
+
+            $("#dato").html(`
+                Suma: ${suma} <br>
+                Media: ${media} <br>
+                Máximo: ${maximo} <br>
+                Mínimo: ${minimo}
+            `);
+        } else {
+            $("#dato").text("No hay datos de edades disponibles.");
         }
-
-        // Añadir los datos del formulario al objeto creado
-        listado.push(crearObjeto());
-
-        // Calculamos la suma, media y la edad máxima y mínima introducida
-        let suma = edades.reduce((a, b) => a + b, 0);
-        let media = suma / edades.length;
-        let max = Math.max(...edades);
-        let min = Math.min(...edades);
-
-        // mostramos resultado en pantalla
-        let resultado = `
-            Suma: ${suma} |
-            Media: ${media.toFixed(2)} |
-            Máximo: ${max} |
-            Mínimo: ${min}
-        `;
-
-        $("#dato").text(resultado);
-
-        // también lo mostramos en consola
-        console.log(resultado);
     }
 
-        // Actualizar la tabla cada vez que se modifica la tabla calcular las estadísticas de edades
-        $("#tablaDatos").on("click", "tr", function () {
-            actualizarEstadisticas();
-        }); 
-
+    // ACTUALIZAR LAS OPERACIONES CADA VEZ QUE SE INSERTA O ELIMINA UNA FILA
+     $("#tablaDatos").on("click", "tr", function () {
+        $(this).remove(); // elimina la fila de la tabla
+        actualizarEstadisticas(); // recalcula los datos después de eliminar la fila
+    });
 });
-
-
 
 </script>
 
