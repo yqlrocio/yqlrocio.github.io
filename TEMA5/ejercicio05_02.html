@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla con jQuery y Array</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Estilo opcional para indicar que las filas son clicables */
+        #tablaDatos tr { cursor: pointer; }
+        #tablaDatos tr:hover { background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<h2>Consulta de usuarios</h2>
+
+<form id="formulario">
+    Nombre: <input type="text" id="nombre"><br><br>
+    Apellidos: <input type="text" id="apellidos"><br><br>
+    Edad: <input type="number" id="edad"><br><br>
+    Ciudad: <input type="text" id="ciudad"><br><br>
+
+    <button type="button" id="Enviar">Enviar</button>
+</form>
+
+<h3>Resultado en JSON (Lista de objetos)</h3>
+<p id="json" style="color: blue; font-family: monospace;"></p>
+
+<h3>Resultado en tabla</h3>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+    </thead>
+
+    <tbody id="tablaDatos"></tbody>
+</table>
+
+<h3>Estadísticas edades</h3>
+<p id="dato"></p>
+
+<script>
+// 1. Crea un array en JavaScript que guarde las filas. Inicialmente vacío.
+let lista = []; 
+
+$(document).ready(function () {
+
+    // Cuando se hace clic en el botón de enviar
+    $("#Enviar").click(function () {
+        const persona = {
+            nombre: $("#nombre").val(),
+            apellidos: $("#apellidos").val(),
+            edad: parseInt($("#edad").val()),
+            ciudad: $("#ciudad").val()
+        };
+
+        // 2. Validación
+        if (!persona.nombre || !persona.apellidos || !persona.edad || !persona.ciudad) {
+            alert("ERROR: Debes rellenar todos los campos");
+            return;
+        }
+
+        // 3. Añadir (push) los datos al array
+        lista.push(persona);
+
+        // 4. Serializar la lista a JSON para mostrarla
+        $("#json").text(JSON.stringify(lista));
+
+        // 5. Pasar la variable a la función generaTabla
+        generaTabla(lista);
+    });
+
+    // FUNCIÓN QUE ELIMINA Y CREA LA TABLA (Punto 5)
+    function generaTabla(datos) {
+        // Limpiamos el cuerpo de la tabla
+        $("#tablaDatos").empty();
+
+        // Por cada elemento del objeto recuperado (forEach), se genera un TR
+        datos.forEach((elemento, indice) => {
+            const fila = generaTR(elemento, indice);
+            $("#tablaDatos").append(fila);
+        });
+
+        // Actualizamos estadísticas
+        actualizarEstadisticas();
+    }
+
+    // FUNCIÓN PARA GENERAR EL TR (basada en diapositivas)
+    function generaTR(obj, index) {
+        const $tr = $(`
+            <tr id="fila-${index}">
+                <td>${obj.nombre}</td>
+                <td>${obj.apellidos}</td>
+                <td>${obj.edad}</td>
+                <td>${obj.ciudad}</td>
+            </tr>
+        `);
+
+        // 6 y 7. Al eliminar, desaparece del ARRAY (splice) y de la página
+        $tr.click(function () {
+            // Borrado del objeto utilizando el índice del array
+            lista.splice(index, 1); 
+            
+            // Redibujamos la tabla para que los índices se reorganicen
+            generaTabla(lista);
+            
+            // Actualizamos el JSON visual
+            $("#json").text(JSON.stringify(lista));
+        });
+
+        return $tr;
+    }
+    
+    function actualizarEstadisticas() {
+        if (lista.length > 0) {
+            const edades = lista.map(p => p.edad);
+            const suma = edades.reduce((a, b) => a + b, 0);
+            const media = suma / edades.length; 
+            const maximo = Math.max(...edades);
+            const minimo = Math.min(...edades);
+
+            $("#dato").html(`
+                Suma: ${suma} <br>
+                Media: ${media.toFixed(2)} <br>
+                Máximo: ${maximo} <br>
+                Mínimo: ${minimo}
+            `);
+        } else {
+            $("#dato").text("No hay datos de edades disponibles.");
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>
