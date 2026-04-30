@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 3 de la presentación</title>
+    </head>
+    <body>
+        <form>
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="text" id="apellido" placeholder="Apellido">
+            <input type="text" id="ciudad" placeholder="Ciudad">
+            <input type="text" id="edad" placeholder="Edad">
+            <fieldset>
+                <legend>Hobbies</legend>
+                
+                <input type="checkbox" id="deporte" name="hobby" value="deporte">
+                <label for="deporte">Deporte</label>
+                
+                <input type="checkbox" id="lectura" name="hobby" value="lectura">
+                <label for="lectura">Lectura</label>
+                
+                <input type="checkbox" id="musica" name="hobby" value="musica">
+                <label for="musica">Música</label>
+
+                <input type="checkbox" id="juegos" name="hobby" value="juegos">
+                <label for="juegos">Juegos</label>
+
+                <input type="checkbox" id="cine" name="hobby" value="cine">
+                <label for="cine">Cine</label>
+
+                <input type="checkbox" id="teatro" name="hobby" value="teatro">
+                <label for="teatro">Teatro</label>
+
+                <input type="checkbox" id="coleccionismo" name="hobby" value="coleccionismo">
+                <label for="coleccionismo">Coleccionismo</label>
+
+                <input type="checkbox" id="bricolaje" name="hobby" value="bricolaje">
+                <label for="bricolaje">Bricolaje</label>
+
+                <input type="checkbox" id="cosplay" name="hobby" value="cosplay">
+                <label for="cosplay">Cosplay</label>
+            </fieldset>
+            <p style="color: gray;">Puede seleecionar como maximo tres opciones</p>
+            <button type="button" id="botoncin">Pulsa y observa</button>
+        </form>
+        <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Ciudad</th>
+                <th>Edad</th>
+                <th>Hobbies</th>
+               
+            </tr>
+        </thead>
+        <tbody id="bodyTable">
+        </tbody>
+        </table>
+        <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+        <script>
+            $(document).ready(function(){
+
+                $("#botoncin").click(function(){
+                    let datos = getInputs();
+                    if (datos){
+                        let bodyTable = $("#bodyTable");
+                        insertarEnTabla(bodyTable, datos);
+                    }
+                });
+
+                $("input[name='hobby']").on("change", function() {
+                    let marcados = $("input[name='hobby']:checked").length;
+
+                    if (marcados >= 3) {
+                        $("input[name='hobby']:not(:checked)").prop("disabled", true);
+                    } else {
+                        $("input[name='hobby']").prop("disabled", false);
+                    }
+                });
+
+
+                });
+
+            function getInputs(){
+                if ($("#nombre").val().trim() === "" || $("#apellido").val().trim() === "" || $("#ciudad").val().trim() === "" || $("#edad").val().trim() === ""){
+                    alert("Todos los campos deben estar rellenados");
+                    return null;
+                }
+                    //input[name='hobby'] selecciona todos los inputs que tengan ese nombre específico
+                    //:checked reduce la selección a los cuadros que el usuario ha marcado
+                    //.map() recorre cada checkbox marcado para extraer su value
+                    //.get() transforma un objeto jQuery en un Array
+                let hobbiesMarcados = $("input[name='hobby']:checked").map(function() {
+                    return $(this).val();
+                }).get(); 
+
+                return {
+                    nombre: $("#nombre").val(),
+                    apellidos: $("#apellido").val(),
+                    ciudad: $("#ciudad").val(),
+                    edad: $("#edad").val(),
+                    hobbies: hobbiesMarcados.join(", ")
+                }
+            };
+
+         
+        // FUNCIÓN QUE ELIMINA Y CREA LA TABLA (Punto 5)
+            function generaTabla(datos) {
+                // Limpiamos el cuerpo de la tabla
+                $("#tablaDatos").empty();
+
+                // Por cada elemento del objeto recuperado (forEach), se genera un TR
+                datos.forEach((elemento, indice) => {
+                    const fila = generaTR(elemento, indice);
+                    $("#tablaDatos").append(fila);
+                });
+
+                // Actualizamos estadísticas
+                actualizarEstadisticas();
+            }
+
+            // FUNCIÓN PARA GENERAR EL TR (basada en diapositivas)
+            function generaTR(obj, index) {
+                const $tr = $(`
+                    <tr id="fila-${index}">
+                        <td>${obj.nombre}</td>
+                        <td>${obj.apellidos}</td>
+                        <td>${obj.edad}</td>
+                        <td>${obj.ciudad}</td>
+                    </tr>
+                `);
+
+                // 6 y 7. Al eliminar, desaparece del ARRAY (splice) y de la página
+                $tr.click(function () {
+                    // Borrado del objeto utilizando el índice del array
+                    lista.splice(index, 1); 
+                    
+                    // Redibujamos la tabla para que los índices se reorganicen
+                    generaTabla(lista);
+                    
+                    // Actualizamos el JSON visual
+                    $("#json").text(JSON.stringify(lista));
+                });
+
+                return $tr;
+            }
+            
+            function actualizarEstadisticas() {
+                if (lista.length > 0) {
+                    const edades = lista.map(p => p.edad);
+                    const suma = edades.reduce((a, b) => a + b, 0);
+                    const media = suma / edades.length; 
+                    const maximo = Math.max(...edades);
+                    const minimo = Math.min(...edades);
+
+                    $("#dato").html(`
+                        Suma: ${suma} <br>
+                        Media: ${media.toFixed(2)} <br>
+                        Máximo: ${maximo} <br>
+                        Mínimo: ${minimo}
+                    `);
+                } else {
+                    $("#dato").text("No hay datos de edades disponibles.");
+                }
+            }
+        </script>
+    </body>
+</html>
