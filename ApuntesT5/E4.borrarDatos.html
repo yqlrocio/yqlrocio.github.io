@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2: Reto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 2 - Reto de Validación y Cálculos</h2>
+
+    <form id="formUsuario">
+        <label>ID: <input type="text" id="idFila" value="1"></label><br>
+        <label>Nombre: <input type="text" id="nombre"></label><br>
+        <label>Apellidos: <input type="text" id="apellidos"></label><br>
+        <label>Edad: <input type="number" id="edad"></label><br>
+        <label>Ciudad: <input type="text" id="ciudad"></label><br>
+        <button type="button" id="btnAñadir">Añadir Fila</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <div id="resultadoCalculos" style="margin-top: 15px; font-weight: bold;"></div>
+
+    <script>
+        let edades = [];
+
+        function calcularEstadisticas() {
+            if (edades.length === 0) return;
+            
+            let suma = edades.reduce((a, b) => a + b, 0);
+            let media = suma / edades.length;
+            let max = Math.max(...edades);
+            let min = Math.min(...edades);
+
+            $("#resultadoCalculos").html(
+                "Suma = " + suma + "<br>" +
+                "Máximo = " + max + "<br>" +
+                "Media = " + media.toFixed(2) + "<br>" +
+                "Mínimo = " + min
+            );
+        }
+
+        $("#btnAñadir").click(function() {
+            // Validaciones
+            let idVal = $("#idFila").val();
+            let nombreVal = $("#nombre").val();
+            let apellidosVal = $("#apellidos").val();
+            let edadVal = $("#edad").val();
+            let ciudadVal = $("#ciudad").val();
+
+            if (!idVal) { alert("El campo idFila es obligatorio"); return; }
+            if (!nombreVal) { alert("El campo nombre es obligatorio"); return; }
+            if (!apellidosVal) { alert("El campo apellidos es obligatorio"); return; }
+            if (!edadVal) { alert("El campo edad es obligatorio"); return; }
+            if (!ciudadVal) { alert("El campo ciudad es obligatorio"); return; }
+
+            // Añadir edad a nuestro array para cálculos
+            edades.push(parseInt(edadVal));
+
+            // Crear el TR asignándole el ID y el evento click
+            let fila = "<tr id='fila_" + idVal + "' onclick='eliminarFila(" + idVal + ", " + edadVal + ")'>" +
+                       "<td>" + idVal + "</td>" +
+                       "<td>" + nombreVal + "</td>" +
+                       "<td>" + apellidosVal + "</td>" +
+                       "<td>" + edadVal + "</td>" +
+                       "<td>" + ciudadVal + "</td>" +
+                       "</tr>";
+
+            $("#tbody").append(fila);
+            calcularEstadisticas();
+        });
+
+        // Función para eliminar fila
+        window.eliminarFila = function(id, edad) {
+            $("#fila_" + id).remove();
+            
+            // Eliminamos la edad del array y recalculamos
+            let index = edades.indexOf(edad);
+            if (index > -1) {
+                edades.splice(index, 1);
+            }
+            calcularEstadisticas();
+        };
+    </script>
+</body>
+</html>

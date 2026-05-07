@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes y Guía de Examen - jQuery, JSON y Asincronismo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fcfcfc;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #1e3a8a;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 12px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #2563eb;
+            margin-top: 35px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 6px;
+        }
+        h3 {
+            color: #059669;
+        }
+        .note {
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 12px 18px;
+            margin: 15px 0;
+            font-size: 0.95em;
+        }
+        pre {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        code {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+        }
+        ul {
+            margin: 10px 0 20px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Apuntes y Guía de Examen: jQuery, JSON y AJAX</h1>
+
+    <h2>1. JSON (Intercambio de datos)</h2>
+    <div class="note">
+        <strong>Anotación de examen:</strong> JSON es texto plano estructurado como mapa clave-valor. Solo admite: cadenas de texto, números, objetos, arrays, booleanos y <code>null</code>.
+    </div>
+    <ul>
+        <li><strong>Serialización:</strong> Convierte un objeto JS a texto JSON para enviarlo. Función: <code>JSON.stringify(objeto)</code>.</li>
+        <li><strong>Deserialización:</strong> Convierte el texto JSON de vuelta a objeto JS para usar sus datos. Función: <code>JSON.parse(texto_json)</code>.</li>
+    </ul>
+
+    <pre><code>let miObjeto = {
+    nombre: "Ana",
+    edad: 22
+};
+
+// 1. SERIALIZACIÓN: De Objeto a Texto
+let textoJSON = JSON.stringify(miObjeto);
+console.log(textoJSON); 
+// Salida: '{"nombre":"Ana","edad":22}'
+
+// 2. DESERIALIZACIÓN: De Texto a Objeto
+let objetoDeVuelta = JSON.parse(textoJSON);
+console.log(objetoDeVuelta.nombre); 
+// Salida: Ana</code></pre>
+
+    <h2>2. Códigos de Estado HTTP</h2>
+    <ul>
+        <li><code>200 OK</code> / <code>201 Created</code>: La petición se ha completado o creado con éxito.</li>
+        <li><code>304 Not Modified</code>: Se utilizan los datos en caché porque no han sufrido cambios.</li>
+        <li><code>404 Not Found</code>: El recurso no existe o la URL es errónea.</li>
+        <li><code>500 Internal Server Error</code>: Fallo interno en el servidor.</li>
+    </ul>
+
+    <h2>3. Manipulación del DOM: jQuery vs Nativo</h2>
+    <div class="note">
+        <strong>Anotación de examen:</strong> El código nativo es el propio estándar del navegador, mientras que jQuery simplifica la escritura con el símbolo <code>$</code>.
+    </div>
+
+    <pre><code>// 1. Crear un elemento nuevo
+let $jqElemento = $("&lt;li&gt;Elemento&lt;/li&gt;");                // jQuery
+let nativoElemento = document.createElement("li");        // Nativo
+nativoElemento.textContent = "Elemento";
+
+// 2. Añadir el elemento al final de una lista
+$("#miLista").append($jqElemento);                        // jQuery
+document.getElementById("miLista").appendChild(nativoElemento); // Nativo
+
+// 3. Eliminar un elemento de la página
+$("#miLista").remove();                                   // jQuery
+document.getElementById("miLista").remove();              // Nativo</code></pre>
+
+    <h2>4. Peticiones Asíncronas (Async / Await)</h2>
+    <div class="note">
+        <strong>Anotación de examen:</strong> Las promesas son un "justificante" de que se recibirá un dato en el futuro. <code>async / await</code> detiene el flujo hasta obtener la respuesta y permite utilizar <code>return</code>.
+    </div>
+
+    <pre><code>// Función asíncrona para obtener datos mediante una petición
+async function obtenerDatos() {
+    try {
+        // Petición asíncrona con jQuery
+        let resultado = await $.ajax({
+            url: "url.php",
+            method: "GET"
+        });
+        
+        return resultado; // Retorna el dato obtenido
+        
+    } catch (error) {
+        console.error("Ha ocurrido un error en la petición: " + error);
+    }
+}
+
+// Ejecución de la promesa
+obtenerDatos().then(datos => {
+    console.log("Datos procesados:", datos);
+});</code></pre>
+</div>
+
+</body>
+</html>

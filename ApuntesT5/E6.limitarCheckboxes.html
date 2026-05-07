@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3: Reto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Ejercicio 3 - Reto de Validación de Checkboxes</h2>
+
+    <form>
+        <label><input type="checkbox" name="hobbies[]" value="deporte"> Deporte</label><br>
+        <label><input type="checkbox" name="hobbies[]" value="lectura"> Lectura</label><br>
+        <label><input type="checkbox" name="hobbies[]" value="música"> Música</label><br>
+        <label><input type="checkbox" name="hobbies[]" value="juegos"> Juegos</label><br>
+        <label><input type="checkbox" name="hobbies[]" value="cine"> Cine</label><br>
+        <label><input type="checkbox" name="hobbies[]" value="teatro"> Teatro</label>
+    </form>
+    
+    <p id="contador" style="font-weight: bold;"></p>
+
+    <script>
+        // Mediante jQuery escuchamos el evento change
+        $('input:checkbox').on('change', function () {
+            // Contamos los checkboxes que están seleccionados
+            let numSeleccionados = $('input:checkbox').filter(':checked').length;
+            $('#contador').text(numSeleccionados + " seleccionados (máximo 3).");
+
+            if (numSeleccionados >= 3) {
+                // Deshabilitamos aquellos que no están marcados
+                $('input:checkbox').not(':checked').prop('disabled', true);
+            } else {
+                // Volvemos a habilitarlos
+                $('input:checkbox').prop('disabled', false);
+            }
+        });
+    </script>
+</body>
+</html>

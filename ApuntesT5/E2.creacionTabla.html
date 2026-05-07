@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1: Reto</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 1 - Reto Tabla</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            </tbody>
+    </table>
+
+    <script>
+        let obj = {
+            nombre: "Alberto",
+            apellidos: "Ramos",
+            edad: 26,
+            ciudad: "Granada"
+        };
+
+        // Serializamos y Deserializamos para simular el paso de red
+        let serial = JSON.stringify(obj);
+        let recuperado = JSON.parse(serial);
+
+        // Generamos la fila en formato String HTML
+        function generaTr(objeto_recuperado) {
+            return "<tr>" +
+                   "<td>" + objeto_recuperado.nombre + "</td>" +
+                   "<td>" + objeto_recuperado.apellidos + "</td>" +
+                   "<td>" + objeto_recuperado.edad + "</td>" +
+                   "<td>" + objeto_recuperado.ciudad + "</td>" +
+                   "</tr>";
+        }
+
+        // Insertamos en el tbody usando jQuery
+        $("#tbody").append(generaTr(recuperado));
+    </script>
+</body>
+</html>

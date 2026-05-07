@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Checkboxes</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 6px; }
+        .checkbox-group { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 3 - Listas y Checkboxes</h2>
+
+    <form id="formUsuario">
+        <label>Nombre: <input type="text" id="nombre" value="Carlos"></label><br>
+        <label>Apellidos: <input type="text" id="apellidos" value="Ruiz"></label><br>
+        <label>Edad: <input type="number" id="edad" value="22"></label><br>
+        <label>Ciudad: <input type="text" id="ciudad" value="Málaga"></label><br>
+        
+        <div class="checkbox-group">
+            <strong>Hobbies:</strong><br>
+            <label><input type="checkbox" name="hobbies[]" value="deporte"> Deporte</label>
+            <label><input type="checkbox" name="hobbies[]" value="lectura"> Lectura</label>
+            <label><input type="checkbox" name="hobbies[]" value="música"> Música</label>
+            <label><input type="checkbox" name="hobbies[]" value="juegos"> Juegos</label>
+            <label><input type="checkbox" name="hobbies[]" value="cine"> Cine</label>
+        </div>
+        
+        <button type="button" id="btnAñadir">Añadir</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+                <th>Hobbies</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+        $("#btnAñadir").click(function() {
+            // Leemos los hobbies seleccionados
+            let hobbiesSeleccionados = $('input[name="hobbies[]"]')
+                .filter(':checked')
+                .map(function() {
+                    return $(this).val();
+                }).get();
+
+            let fila = "<tr>" +
+                       "<td>" + $("#nombre").val() + "</td>" +
+                       "<td>" + $("#apellidos").val() + "</td>" +
+                       "<td>" + $("#edad").val() + "</td>" +
+                       "<td>" + $("#ciudad").val() + "</td>" +
+                       "<td>" + hobbiesSeleccionados.join(", ") + "</td>" +
+                       "</tr>";
+
+            $("#tbody").append(fila);
+        });
+    </script>
+</body>
+</html>

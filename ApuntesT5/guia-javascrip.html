@@ -1,0 +1,323 @@
+// ========================================
+// JAVASCRIPT - RESUMEN COMPLETO
+// GUÍA PARA VISUAL STUDIO CODE
+// ========================================
+
+
+// ========================================
+// 1. MOSTRAR MENSAJES
+// ========================================
+
+// Muestra una ventana emergente
+alert("Hola mundo");
+
+// Muestra información en la consola
+console.log("Hola desde consola");
+
+// Pide información al usuario
+let nombreUsuario = prompt("¿Cómo te llamas?");
+console.log(nombreUsuario);
+
+
+// ========================================
+// 2. VARIABLES
+// ========================================
+
+// Variable que puede cambiar
+let edad = 25;
+
+// Constante (no cambia)
+const IVA = 0.21;
+
+// Forma antigua
+var ciudad = "Madrid";
+
+console.log(edad);
+console.log(IVA);
+console.log(ciudad);
+
+
+// ========================================
+// 3. TIPOS DE DATOS
+// ========================================
+
+// String
+let nombre = "Juan";
+
+// Number
+let numero = 42;
+
+// Boolean
+let activo = true;
+
+// Undefined
+let vacio;
+
+// Null
+let dato = null;
+
+// Array
+let numeros = [1, 2, 3, 4];
+
+// Objeto
+let persona = {
+    nombre: "Ana",
+    edad: 28
+};
+
+console.log(persona);
+
+
+// ========================================
+// 4. OPERADORES
+// ========================================
+
+// Aritméticos
+let suma = 5 + 3;
+let resta = 10 - 4;
+let multiplicacion = 2 * 3;
+let division = 10 / 2;
+let resto = 10 % 3;
+
+// Comparación
+console.log(5 === 5);
+console.log(5 !== 3);
+console.log(8 > 2);
+
+// Lógicos
+console.log(true && true);
+console.log(true || false);
+console.log(!true);
+
+
+// ========================================
+// 5. CONDICIONALES
+// ========================================
+
+let edadPersona = 20;
+
+if (edadPersona >= 18) {
+    console.log("Mayor de edad");
+} else {
+    console.log("Menor de edad");
+}
+
+
+// SWITCH
+let dia = 1;
+
+switch (dia) {
+    case 1:
+        console.log("Lunes");
+        break;
+    case 2:
+        console.log("Martes");
+        break;
+    default:
+        console.log("Otro día");
+}
+
+
+// ========================================
+// 6. BUCLES
+// ========================================
+
+// FOR
+for (let i = 0; i < 5; i++) {
+    console.log("Número: " + i);
+}
+
+// WHILE
+let contador = 0;
+
+while (contador < 5) {
+    console.log(contador);
+    contador++;
+}
+
+// DO WHILE
+let x = 0;
+
+do {
+    console.log(x);
+    x++;
+} while (x < 5);
+
+
+// ========================================
+// 7. FUNCIONES
+// ========================================
+
+// Función normal
+function sumar(a, b) {
+    return a + b;
+}
+
+console.log(sumar(5, 3));
+
+// Función flecha
+const multiplicar = (a, b) => a * b;
+
+console.log(multiplicar(4, 2));
+
+
+// ========================================
+// 8. DOM (HTML)
+// ========================================
+
+// Seleccionar por ID
+document.getElementById("titulo");
+
+// Seleccionar con querySelector
+document.querySelector("#titulo");
+
+
+// ========================================
+// 9. MODIFICAR CONTENIDO
+// ========================================
+
+const titulo = document.getElementById("titulo");
+
+// Cambiar texto
+titulo.textContent = "Nuevo texto";
+
+// Cambiar HTML
+titulo.innerHTML = "<strong>Texto en negrita</strong>";
+
+
+// ========================================
+// 10. CAMBIAR ESTILOS
+// ========================================
+
+titulo.style.color = "blue";
+titulo.style.fontSize = "30px";
+
+
+// ========================================
+// 11. CREAR ELEMENTOS
+// ========================================
+
+const nuevoDiv = document.createElement("div");
+
+nuevoDiv.textContent = "Soy un nuevo div";
+
+document.body.appendChild(nuevoDiv);
+
+
+// Eliminar elemento
+nuevoDiv.remove();
+
+
+// ========================================
+// 12. EVENTOS
+// ========================================
+
+const boton = document.getElementById("boton");
+
+boton.addEventListener("click", function () {
+    alert("Botón pulsado");
+});
+
+
+// Con función flecha
+boton.addEventListener("click", () => {
+    console.log("Click detectado");
+});
+
+
+// ========================================
+// 13. OBJETOS
+// ========================================
+
+const usuario = {
+    nombre: "Carlos",
+    edad: 30,
+
+    saludar: function () {
+        return "Hola, soy " + this.nombre;
+    }
+};
+
+console.log(usuario.nombre);
+console.log(usuario.saludar());
+
+// Añadir propiedad
+usuario.ocupacion = "Programador";
+
+// Eliminar propiedad
+delete usuario.edad;
+
+console.log(usuario);
+
+
+// ========================================
+// 14. FECHAS
+// ========================================
+
+let añoActual = new Date().getFullYear();
+
+console.log(añoActual);
+
+
+// ========================================
+// 15. EJEMPLO LOGIN SIMPLE
+// ========================================
+
+let user = prompt("Usuario:");
+let pass = prompt("Contraseña:");
+
+if (user === "admin" && pass === "1234") {
+    alert("Acceso correcto");
+} else {
+    alert("Acceso denegado");
+}
+
+
+// ========================================
+// 16. CALCULAR IVA
+// ========================================
+
+let precio = 100;
+let precioFinal = precio + (precio * IVA);
+
+console.log("Precio final: " + precioFinal);
+
+
+// ========================================
+// 17. PAR O IMPAR
+// ========================================
+
+let num = 7;
+
+if (num % 2 === 0) {
+    console.log("Par");
+} else {
+    console.log("Impar");
+}
+
+
+// ========================================
+// 18. AÑO A DÍAS
+// ========================================
+
+let años = 20;
+let diasVividos = años * 365;
+
+console.log("Has vivido aprox. " + diasVividos + " días");
+
+
+// ========================================
+// COMANDOS MÁS IMPORTANTES
+// ========================================
+
+// let
+// const
+// if / else
+// for
+// function
+// console.log()
+// prompt()
+// getElementById()
+// querySelector()
+// addEventListener()
+// textContent

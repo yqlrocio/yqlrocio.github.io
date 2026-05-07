@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2: Formulario dinámico</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table, th, td { border: 1px solid black; border-collapse: collapse; padding: 6px; }
+        form { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Ejercicio 2 - Insertar datos</h2>
+
+    <form id="formUsuario">
+        <label>Nombre: <input type="text" id="nombre" value="Ana"></label><br>
+        <label>Apellidos: <input type="text" id="apellidos" value="Gómez"></label><br>
+        <label>Edad: <input type="number" id="edad" value="25"></label><br>
+        <label>Ciudad: <input type="text" id="ciudad" value="Sevilla"></label><br>
+        <button type="button" id="btnAñadir">Añadir</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script>
+        function generaTr(objeto_recuperado) {
+            return "<tr>" +
+                   "<td>" + objeto_recuperado.nombre + "</td>" +
+                   "<td>" + objeto_recuperado.apellidos + "</td>" +
+                   "<td>" + objeto_recuperado.edad + "</td>" +
+                   "<td>" + objeto_recuperado.ciudad + "</td>" +
+                   "</tr>";
+        }
+
+        $("#btnAñadir").click(function() {
+            let objJson = {
+                nombre: $("#nombre").val(),
+                apellidos: $("#apellidos").val(),
+                edad: $("#edad").val(),
+                ciudad: $("#ciudad").val()
+            };
+
+            // Simulación de paso a JSON y vuelta a Objeto (según enunciado)
+            let serializado = JSON.stringify(objJson);
+            let recuperado = JSON.parse(serializado);
+
+            $("#tbody").append(generaTr(recuperado));
+        });
+    </script>
+</body>
+</html>

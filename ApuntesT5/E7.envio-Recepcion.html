@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4: Envío y Recepción</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Ejercicio 4 - Envío / Recepción a servidor</h2>
+
+    <button id="btnEnviar">Enviar Datos</button>
+    <pre id="resultado"></pre>
+
+    <script>
+        $("#btnEnviar").click(async function() {
+            // Objeto de prueba
+            let dataToSend = [{
+                nombre: "Alex",
+                apellidos: "García",
+                edad: 25,
+                ciudad: "Madrid"
+            }];
+
+            try {
+                // Realizamos el envío con promesas utilizando async/await
+                let respuesta = await $.ajax({
+                    url: "https://lm.iesnervion.es/eco.php",
+                    method: "POST",
+                    data: JSON.stringify(dataToSend),
+                    contentType: "application/json",
+                    dataType: "json"
+                });
+
+                console.log("Respuesta del servidor:", respuesta);
+                $("#resultado").text(JSON.stringify(respuesta, null, 2));
+            } catch (error) {
+                console.error("Error en el envío:", error);
+                $("#resultado").text("Error de conexión con el servidor.");
+            }
+        });
+    </script>
+</body>
+</html>
