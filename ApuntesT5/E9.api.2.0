@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ejercicio 02: Futbolero</title>
+    </head>
+    <body>
+        <select id="listaEquipos"></select>
+        <div id="infoEquipo"></div>
+        <script>
+            //Hace refrencia al selector
+            const lista = document.getElementById("listaEquipos");
+
+            //Hace refrencia al div 
+            const info = document.getElementById("infoEquipo");
+
+            //Contendra el array de la API que contiene todos los equipos en cada uno de sus indices
+            let listaEquipos = [];
+
+            //Cuando el DOM se haya cargado, se ejecutara la funcion obtenerInfo
+            document.addEventListener("DOMContentLoaded", function(){
+                obtenerInfo();
+            });
+            
+            //Utilizamos una funcion asincrona para no detener el flujo del hilo principal
+            async function obtenerInfo() {
+                //Obtenemos la respuesta de la API y la guardamos en una constante
+                const respuesta = await fetch('https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=English_Premier_League');
+
+                //Pasamos la respuesta de la API a un objeto javascript manejable
+                const datos = await respuesta.json();
+
+                //En lista equipos guardamos el mismo contenido que en el array de la API teams, ya que dentro de este es donde esta toda la informacion necesaria
+                listaEquipos = datos.teams;
+
+                /**
+                 * Recorremos el array para que, por cada indice (que representa al equipo), se anada una opcion al selector
+                 * Cada opcion tendra como valor el id del equipo y mostrara el nombre de este
+                 */
+                listaEquipos.forEach(equipos => {
+                    lista.innerHTML += `<option value=${equipos.idTeam}>${equipos.strTeam}</option>`;
+                });
+
+                //Cuando la opcion seleccionada en el select cambie, se desencadena una evento
+                document.getElementById("listaEquipos").addEventListener("change", function(event){
+
+                    //Guardamos el valor de la opcion seleccionada (que es el id del equipo)
+                    const idSeleccionado = event.target.value;
+
+                    //Para saber que equipo ha sido seleccionad, buscamos el indice del array cuyo id coincida con el idSeleccionado
+                    const equipoSeleccionado = listaEquipos.find(equipo => equipo.idTeam === idSeleccionado);
+
+                    //Una vez tengamos el equipoSeleccionad, llenamos el div con la informacion pertinente
+                    info.innerHTML = `
+                    <h2>${equipoSeleccionado.strTeam}</h2>
+                    <p><strong>Formed Year:</strong> ${equipoSeleccionado.intFormedYear}</p>
+                    <p><strong>Stadium:</strong> ${equipoSeleccionado.strStadium}</p>
+                    <p><strong>Description:</strong> ${equipoSeleccionado.strDescriptionEN}</p>`;
+                });
+            }
+        </script>
+    </body>
+</html>
