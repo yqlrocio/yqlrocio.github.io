@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen</title>
+    <script src="jquery4.js"></script>
+        <style>
+       #succes {
+            border: 1px solid green;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        </style>
+</head>
+
+<body>
+    <h1>Ejercicio 1: Infiltración en el Servidor de la Sociedad Secreta</h1>
+    <h2>Qiaolin Rocío Ye</h2>
+
+
+    <!-- En primer lugar creamos un botón "Instrucciones", en el que el usuario deberá de pulsar al inicio y se le mostrará las instrucciones -->
+    <form id="informacion">
+        <button type="button" id="instruccion">Instrucciones</button>
+    </form>
+
+     <pre id="resultado"></pre>
+
+    <script>
+        $("#instruccion").click(async function() {
+            // Objeto de prueba
+            let dataToSend = [{
+                nom_alum: "Rocio",
+                num_ejer: "1",
+                password: "1q2w3e",
+                llave: ""
+            }];
+
+            try {
+                let respuesta = await $.ajax({
+                    url: "http://192.168.100.150/api/secret",
+                    method: "GET",
+                    data: JSON.stringify(dataToSend),
+                    contentType: "/api/secret",
+                    dataType: "json"
+                });
+
+                console.log("Respuesta del servidor:", respuesta);
+                $("#resultado").text(JSON.stringify(respuesta, null, 2));
+            } catch (error) {
+                console.error("Error en el envío:", error);
+                $("#resultado").text("Error de conexión con el servidor.");
+            }
+  
+        });
+    </script>
+
+    <!-- A continuación crearemos un formulario con valores definidos e indefinidos y un botón de envio. 
+         Valores definidos como el nombre del alumno que ha realizado el ejercicio, el número del ejercicio y una contraseña inicial
+         Valores que se deberá de rellenar por el usuario que se conecta serían: nombre, apellido, llave-->
+     <form id="formulario">
+        <label>Autor: <input type="text" id="nom_alum" value="Rocio"></label><br>
+        <label>Numero del ejercicio: <input type="text" id="num_ejer" value="1"></label><br>
+        <label>Nombre: <input type="text" id="nombre" value=""></label><br>
+        <label>Apellidos: <input type="text" id="apellidos" value=""></label><br>
+        <label>Contraseña: <input type="password" id="password" value="1q2w3e"></label><br>
+        <label>Llave: <input type="number" id="llave" value=""></label><br>
+        <button type="button" id="enviar">Enviar</button>
+    </form>
+
+    <!-- Antes de dar a enviar nos deberá de aparecer la llave provisional al seleccionar sobre la casilla de llave-->
+
+    <!-- Una vez que nos faciliten la llave provisional, seleccionaríamos sobre el botón de enviar -->
+  <pre id="resultado"></pre>
+    <script>
+        $("#enviar").click(async function() {
+            // Objeto de prueba
+            let dataToSend = [{
+                nom_alum: "Rocio",
+                num_ejer: "1",
+                password: "1q2w3e",
+                llave: ""
+            }];
+
+            try {
+                let respuesta = await $.ajax({
+                    url: "http://192.168.100.150/api/secret",
+                    method: "GET",
+                    data: JSON.stringify(dataToSend),
+                    contentType: "/api/secret",
+                    dataType: "json"
+                });
+
+                console.log("Respuesta del servidor:", respuesta);
+                $("#resultado").text(JSON.stringify(respuesta, null, 2));
+            } catch (error) {
+                console.error("Error en el envío:", error);
+                $("#resultado").text("Error de conexión con el servidor.");
+            }
+  
+        });
+    </script>
+
+</body>
+</html>
