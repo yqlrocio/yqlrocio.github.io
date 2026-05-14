@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Megareto: Estructura MVC</title>
+  <style>
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f4f4f4; }
+    .btn-borrar { background-color: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+    .btn-borrar:hover { background-color: #cc0000; }
+  </style>
+</head>
+<body>
+
+  <h2>Formulario de Registro</h2>
+  <form id="miFormulario">
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <input type="text" name="apellido" placeholder="Apellido" required />
+    <button type="submit">Insertar Fila</button>
+  </form>
+
+  <h2>Tabla de Datos</h2>
+  <div id="contenedorTabla"></div>
+
+  <script type="module" src="js/controller.js" defer></script>
+
+</body>
+</html>
